@@ -3,12 +3,9 @@ import { useEffect, useState } from "react";
 export type Movie = {
     id: number
     overview: string
-    popularity: number
     poster_path: string | null
     release_date: string
-    include_adult: boolean
     title: string
-    video: boolean
     vote_average: number
     vote_count: number
 }
@@ -27,8 +24,7 @@ export const useMovies = (year: number) => {
             setLoading(true)
             setError(null)
             try {
-                const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_API_KEY}&page=1&primary_release_year
-=${year}`)
+                const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.VITE_TMDB_API_KEY}&page=1&primary_release_year=${year}`)
                 if (!res.ok) throw new Error(`Failed to fetch`)
                 const { results } = await res.json()
                 if (!cancelled) {

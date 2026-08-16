@@ -14,7 +14,7 @@ const formatDate = (date: string) => {
 const MovieCard = ({ movie }: Props) => {
     const [imgFailed, setImgFailed] = useState(false)
     return (
-        <section className="group relative mb-2 z-10 hover:z-50
+        <section tabIndex={0} className="group relative mb-2 z-10 hover:z-50
                     transition-transform duration-200
                     hover:scale-105 focus-within:scale-105 ">
             {movie.poster_path && !imgFailed ? (

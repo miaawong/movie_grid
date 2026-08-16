@@ -58,25 +58,27 @@ function App() {
         </label >
       </section>
       {!loading && !error && movies.length > 0 && (
-        < div className="grid grid-cols-[repeat(auto-fill,minmax(12rem,1fr))] gap-4 p-4">
+        < div className={MovieGridClass}>
           {sortedMovies.map(movie => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
-        </div >
+        </div>
       )}
 
-      {
-        loading && (
-          <div className={MovieGridClass}>
-            {Array.from({ length: 20 }).map((_, i) => (
-              <MovieCardSkeleton key={i} />
-            ))}
-          </div>
-        )
-      }
+      {loading && (
+        <div className={MovieGridClass}>
+          {Array.from({ length: 20 }).map((_, i) => (
+            <MovieCardSkeleton key={i} />
+          ))}
+        </div>
+      )}
 
       {!loading && error && (
         <p>Sorry, {error} </p>
+      )}
+
+      {!loading && !error && movies.length === 0 && (
+        <p> No movies found</p>
       )}
     </>
   )
